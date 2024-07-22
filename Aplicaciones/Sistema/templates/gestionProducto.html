@@ -1,0 +1,151 @@
+{% extends "./plantilla.html" %}
+{% load static %}
+{% block body %}
+<div class="container">
+    <div class="text-center">
+<!-- Button trigger modal -->
+        <div class="row">
+            <h1>Listado de Productos</h1>
+            <div class="col-md-12 text-end">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="fas fa-plus "></i>
+                    <b>Agregar Producto</b>
+                </button>      
+                <button class="btn btn-success" onclick="cargarProductos();">
+                    <i class="fas fa-refresh"></i> Actualizar
+                </button>
+            </div>
+            <br>
+            <div class="col-md-12" id="contenedor-productos"></div>
+        </div>
+    </div>
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="#" id="frm_nuevo_producto">
+                {% csrf_token %}
+                        <label for="nombre"><b>Nombre</b></label>
+                        <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese la cedula" required>
+                        <br>
+                        <label for="descripcion">Descripción:</label>
+                        <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la Descripción"></textarea>
+                        <br>
+                        <label for="precio"><b>Precio:</b></label>
+                        <input type="txt" name="precio" class="form-control" id="precio" placeholder="Ingrese nombre del Genero" required>
+                        <br>
+                        <label for=""><b>Stock:</b></label>
+                        <select name="stock" id="stock" class="form-control" required>
+                            <option value="">--SELECCIONE--</option>
+                            <option value="DISPONIBLE">DISPONIBLE</option>
+                            <option value="AGOTADO">AGOTADO</option>
+                        </select>
+                        <br>
+                        <label for=""><b>Estado:</b></label>
+                        <select name="estado" id="estado" class="form-control" required>
+                            <option value="">--SELECCIONE--</option>
+                            <option value="ACTIVO">ACTIVO</option>
+                            <option value="PASIVO">PASIVO</option>
+                        </select>
+                        <br>
+                        <label for="foto"><b>Fotografía:</b></label>
+                        <input type="file" name="foto" id="foto" accept="image/*" required class="form-control">
+                        <br>
+                <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Guardar</button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                    Cancelar</button> 
+                </div>
+
+            </form>   
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+
+  <script>
+    $("#frm_nuevo_producto").validate({
+        rules: {
+            nombre:{
+                required: true,
+                minlength: 3,
+                maxlength: 20
+            },
+            foto:{
+                required: true,
+            }
+        },
+        messages:{
+            nombre:{
+                required: "Por favor ingrese el nombre",
+                minlength: "Ingrese al menos 3 caracteres",
+                maxlength: "Máximo de 20 caracteres"
+            },
+            foto:{
+                required: "Seleccione la foto"
+            }
+        },
+        submitHandler: function(form) {
+            const formData = new FormData(form);
+
+            fetch("{% url 'guardarProducto' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.estado) {
+                    Swal.fire({
+                        title: "Confirmación",
+                        text: data.mensaje,
+                        icon: 'success'
+                    });
+                    $('#exampleModal').modal('hide');
+                    form.reset();
+                    cargarProductos();
+                } else {
+                    Swal.fire({
+                        title: "Error",
+                        text: data.mensaje,
+                        icon: 'error'
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: "Error",
+                    text: 'Hubo un error al enviar el formulario.',
+                    icon: 'error'
+                });
+            });
+        }
+    });
+
+    function cargarProductos() {
+        document.getElementById('contenedor-producto').innerHTML = '<div class="text-center"><span class="spinner-border"></span></div>';
+        fetch('{% url "listaProducto" %}')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('contenedor-producto').innerHTML = html;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+    cargarProductos();
+</script>
+
+{% endblock %}

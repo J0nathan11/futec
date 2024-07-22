@@ -1,0 +1,61 @@
+{% extends './plantilla.html' %}
+{% load static %}
+{% block body %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styleHome.css' %}">
+</head>
+<div>
+    <div>
+        <img src="{% static 'img/imgEmpresa.jpg' %}" class="img-centro" height="800px" width="700px">
+    </div>
+    <br>
+    <h3><b style="margin-left: 350px;">LINEAS DE PRODUCTOS</b></h3>
+    <hr style="border: 0; border-top: 3px solid rgb(219, 82, 2); width:60%;">
+</div>
+<br>
+<div class="tabla-margen">
+    <table>
+        <tr>
+            <td style="padding-left: 10px;">
+                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px">
+            </td>
+            <td style="padding-left: 10px;">
+                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px">
+            </td>
+            <td style="padding-left: 10px;">
+                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px">
+            </td>
+            <td style="padding-left: 10px;">
+                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px">
+            </td>
+
+        </tr>
+    </table>
+</div>
+<br>
+<hr style="border: 0; border-top: 3px solid rgb(219, 82, 2); width:90%;">
+<div style="margin-left: 150px">
+    <table style="width: 90%;">    
+        <tr>
+            <td style="text-align: center;">
+                <h2 ><b>Misión</b></h2>
+            </td>
+            <td style="text-align: center;">
+                <h2 ><b>Visión</b></h2>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: justify;">
+                <h3>La visión permite definir el camino que se debe seguir para alcanzar las metas propuestas. Para ello, debe representar de una forma clara y realista los principios que dan una identidad a esta empresa y responder a cuestiones como: ¿qué se desea lograr?, ¿hacia dónde nos dirigimos?, ¿dónde queremos estar en un futuro? y ¿cómo lo conseguiremos? Además, a diferencia de la misión, su definición puede tener una mayor longitud, aunque lo mejor es ser breve, destacando los puntos realmente importantes. </h3>
+            </td>
+            <td style="text-align: justify;padding-left: 30px;">
+                <h3>La visión permite definir el camino que se debe seguir para alcanzar las metas propuestas. Para ello, debe representar de una forma clara y realista los principios que dan una identidad a esta empresa y responder a cuestiones como: ¿qué se desea lograr?, ¿hacia dónde nos dirigimos?, ¿dónde queremos estar en un futuro? y ¿cómo lo conseguiremos? Además, a diferencia de la misión, su definición puede tener una mayor longitud, aunque lo mejor es ser breve, destacando los puntos realmente importantes. </h3>
+            </td>
+        </tr>
+    </table>
+</div>
+<br><br><br><br>
+
+
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "./plantilla.html" %}
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-md-4">
+                <form action="{% url 'guardarProducto' %}" enctype="multipart/form-data" id="frm_nuevo_producto" method="post">
+                    {% csrf_token %}
+                        <label for="nombre"><b>Nombre</b></label>
+                        <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese la cedula" required>
+                        <br>
+                        <label for="descripcion">Descripción:</label>
+                        <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la Descripción"></textarea>
+                        <br>
+                        <label for="precio"><b>Precio:</b></label>
+                        <input type="txt" name="precio" class="form-control" id="precio" placeholder="Ingrese nombre del Genero" required>
+                        <br>
+                        <label for=""><b>Stock:</b></label>
+                        <select name="stock" id="stock" class="form-control" required>
+                            <option value="">--SELECCIONE--</option>
+                            <option value="DISPONIBLE">DISPONIBLE</option>
+                            <option value="AGOTADO">AGOTADO</option>
+                        </select>
+                        <br>
+                        <label for=""><b>Estado:</b></label>
+                        <select name="estado" id="estado" class="form-control" required>
+                            <option value="">--SELECCIONE--</option>
+                            <option value="ACTIVO">ACTIVO</option>
+                            <option value="PASIVO">PASIVO</option>
+                        </select>
+                        <br>
+                        <label for="foto"><b>Fotografía:</b></label>
+                        <input type="file" name="foto" id="foto" accept="image/*" required class="form-control">
+                        <br>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{% url 'listadoProducto' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+    </div>
+</div>
+<br><br><br><br>
+
+<script>
+    $("#frm_nuevo_producto").validate({
+        rules: {
+            nombre:{
+                required: true,
+                minlength: 3,
+                maxlength:10
+            },
+            descripcion:{
+                required: true,
+            },
+            precio:{
+                required: true,
+            },
+            stock:{
+                required: true,
+            },
+            estado:{
+                required: true,
+            },
+            foto:{
+                required: true,
+            }
+            },
+        messages:{
+            nombre:{
+                required: "Por favor ingrese el nombre",
+                minlength: "Por favor almenos ingrese 3 palabras",
+                maxlength: "Se a excedido "
+            },
+            descripcion:{
+                required: "La descripcion es obligataria"
+            },
+            precio:{
+                required: "El precio es obligataria"
+            },
+            stock:{
+                required: "El Stock es obligataria"
+            },
+            estado:{
+                required: "El estado es obligataria"
+            },
+            foto:{
+                required: "Seleccione la foto"
+            }
+        }
+    });
+</script>
+
+{% endblock %}
