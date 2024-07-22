@@ -25,6 +25,11 @@ def guardarProducto(request):
     messages.success(request, 'Genero guardado con éxito')
     return redirect('listadoProducto')
 
+def eliminarProducto(request,id):
+    productoEliminar = Producto.objects.get(id=id)
+    productoEliminar.delete()
+    messages.success(request, 'Producto eliminado con éxito')
+    return redirect('listadoProducto')
 
 def listadoProducto(request):
     productos=Producto.objects.all()

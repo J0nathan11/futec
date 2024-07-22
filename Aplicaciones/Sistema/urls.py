@@ -11,4 +11,5 @@ urlpatterns = [
     path('listadoProducto/',views.listadoProducto, name="listadoProducto"),
     path('nuevoProducto/',views.nuevoProducto, name="nuevoProducto"),
     path('guardarProducto/',views.guardarProducto, name="guardarProducto"),
+    path('eliminarProducto/<id>',views.eliminarProducto, name='eliminarProducto'),
 ]
