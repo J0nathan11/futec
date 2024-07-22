@@ -1,0 +1,46 @@
+{% extends "./plantilla.html" %}
+{% block body %}
+<h1 style="text-align: center;">EDITAR PRODUCTO</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="{% url 'procesarActualizacionProducto' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{productoEditar.id}}">
+                <label for="nombre"><b>Nombre</b></label>
+                <input type="text" name="nombre" class="form-control" id="nombre"  value="{{productoEditar.id}}" placeholder="Ingrese la cedula" required>
+                <br>
+                <label for="descripcion">Descripción:</label>
+                <textarea name="descripcion" class="form-control" id="descripcion"  value="{{productoEditar.id}}" placeholder="Ingrese la Descripción"></textarea>
+                <br>
+                <label for="precio"><b>Precio:</b></label>
+                <input type="txt" name="precio" class="form-control" id="precio"  value="{{productoEditar.id}}" placeholder="Ingrese nombre del Genero" required>
+                <br>
+                <label for=""><b>Stock:</b></label>
+                <select name="stock" id="stock" class="form-control"  value="{{productoEditar.id}}" required>
+                    <option value="">--SELECCIONE--</option>
+                    <option value="DISPONIBLE" {% if productoEditar.stock == "DISPONIBLE" %}selected{% endif %}>DISPONIBLE</option>
+                    <option value="AGOTADO" {% if productoEditar.stock == "AGOTADO" %}selected{% endif %}>AGOTADO</option>
+                </select>
+                <br>
+                <label for=""><b>Estado:</b></label>
+                <select name="estado" id="estado" class="form-control"  value="{{productoEditar.id}}" required>
+                    <option value="">--SELECCIONE--</option>
+                    <option value="ACTIVO" {% if productoEditar.estado == "ACTIVO" %}selected{% endif %}>ACTIVO</option>
+                    <option value="PASIVO" {% if productoEditar.estado == "PASIVO" %}selected{% endif %}>PASIVO</option>
+                </select>
+                <br>
+                <label for="foto"><b>Fotografía:</b></label>
+                <input type="file" name="foto" id="foto"  value="{{productoEditar.id}}" accept="image/*" required class="form-control">
+                <br>
+                <button  type="submit" class="btn btn-warning">
+                    Actualizar</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'listadoProducto' %}" class="btn btn-ligth">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

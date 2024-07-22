@@ -12,4 +12,6 @@ urlpatterns = [
     path('nuevoProducto/',views.nuevoProducto, name="nuevoProducto"),
     path('guardarProducto/',views.guardarProducto, name="guardarProducto"),
     path('eliminarProducto/<id>',views.eliminarProducto, name='eliminarProducto'),
+    path('editarProducto/<id>',views.editarProducto, name="editarProducto"),
+    path('procesarActualizacionProducto/',views.procesarActualizacionProducto, name="procesarActualizacionProducto"),
 ]

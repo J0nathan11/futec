@@ -46,7 +46,7 @@
                 {% endif %}
             </td>
             <td>   
-                <a href="" class="btn btn-outline-warning btn-circle" title="Editar Cine"> <i class="fas fa-pencil"></i></a>
+                <a href="{% url 'editarProducto' productoTemporal.id %}" class="btn btn-outline-warning btn-circle" title="Editar Cine"> <i class="fas fa-pencil"></i></a>
                 <a href="{% url 'eliminarProducto' productoTemporal.id %}" 
                 onclick="return confirm('Esta seguro?')" class="btn btn-outline-danger btn-circle"><i class="fas fa-trash"> </i></a>
 
