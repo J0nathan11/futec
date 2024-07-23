@@ -1,0 +1,109 @@
+{% extends "./plantilla.html" %}
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="{% url 'guardarCliente' %}" enctype="multipart/form-data" id="frm_nuevo_cliente" method="post">
+                    {% csrf_token %}
+                        <label for="ci"><b>Cédula</b></label>
+                        <input type="text" name="ci" class="form-control" id="ci" placeholder="Ingrese la cedula" required>
+                        <br>
+                        <label for="nombre"><b>Nombre:</b></label>
+                        <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese el nombre" required>
+                        <br>
+                        <label for="apellido"><b>Apellido:</b></label>
+                        <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Ingrese el apellido" required>
+                        <br>
+                        <label for="telefono"><b>Teléfono</b></label>
+                        <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Ingrese el celular o teléfono" required>
+                        <br>
+                        <label for="direccion"><b>Dirección</b></label>
+                        <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Ingrese la dirección" required>
+                        <br>
+                        <label for="descripcion">Descripción:</label>
+                        <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la Descripción"></textarea>
+                        <br>
+                        <label for="foto"><b>Fotografía:</b></label>
+                        <input type="file" name="foto" id="foto" accept="image/*" required class="form-control">
+                        <br>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{% url 'listadoCliente' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>+
+    </div>
+</div>
+<br><br><br><br>
+
+<script>
+    $("#frm_nuevo_cliente").validate({
+        rules: {
+            ci:{
+                required: true,
+                digits: true,
+                maxlength: 13
+            },
+            nombre:{
+                required: true,
+                minlength: 3,
+                maxlength:10
+            },
+            apellido:{
+                required: true,
+                minlength: 3,
+                maxlength:10
+            },
+            telefono:{
+                required: true,
+                digits: true,
+                maxlength: 15
+            },
+            direccion:{
+                required: true,
+                minlength: 3,
+                maxlength:10
+            },
+            descripcion:{
+                required: true,
+            },
+            foto:{
+                required: true,
+            }
+            },
+        messages:{
+            ci:{
+                required: "Por favor ingrese la cédula",
+                digits: "Por favor ingrese solo números",
+                maxlength: "Número máximo de 13 dígitos"
+            },
+            nombre:{
+                required: "Por favor ingrese el nombre",
+                minlength: "Por favor al menos ingrese 3 letras",
+                maxlength: "Se ha excedido"
+            },
+            apellido:{
+                required: "Por favor ingrese el nombre",
+                minlength: "Por favor al menos ingrese 3 letras",
+                maxlength: "Se ha excedido"
+            },
+            telefono:{
+                required: "Por favor ingrese el número de teléfono",
+                digits: "Por favor ingrese solo números",
+                maxlength: "Número máximo de 15 dígitos"
+            },
+            direccion:{
+                required: "Por favor ingrese la dirección",
+            },
+            descripcion:{
+                required: "Por favor ingrese una descripción"
+            },
+            foto:{
+                required: "Seleccione la foto"
+            }
+        }
+    });
+</script>
+
+{% endblock %}

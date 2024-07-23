@@ -1,6 +1,6 @@
 from django.db import models
 
-# Cargando modelo
+# Cargando modelo Producto
 class Producto(models.Model):
     id=models.AutoField(primary_key=True)
     nombre=models.CharField(max_length=20)
@@ -10,5 +10,19 @@ class Producto(models.Model):
     estado=models.CharField(max_length=50)
     foto=models.FileField(upload_to='productos',null=True, blank=True)
     def __str__(self):
-        fila="{0}: {1} - {2} - {3} - {4} "
+        fila="{0}: {1} - {2} - {3} - {4} - {5} "
         return fila.format(self.id,self.nombre,self.descripcion,self.precio,self.stock,self.estado)
+
+# Cargando modelo Cliente
+class Cliente(models.Model):
+    id=models.AutoField(primary_key=True)
+    ci=models.CharField(max_length=15)
+    nombre=models.CharField(max_length=20)
+    apellido=models.CharField(max_length=20)
+    telefono=models.CharField(max_length=20)
+    direccion=models.CharField(max_length=50)
+    descripcion=models.CharField(max_length=100)
+    foto=models.FileField(upload_to='clientes',null=True, blank=True)
+    def __str__(self):
+        fila="{0}: {1} - {2} - {3} - {4} - {5} - {6} "
+        return fila.format(self.id,self.ci,self.nombre,self.apellido,self.telefono,self.direccion,self.descripcion)

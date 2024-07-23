@@ -1,0 +1,48 @@
+{% extends "./plantilla.html" %}
+{% block body %}
+<h1 style="text-align: center;">EDITAR CLIENTE</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="{% url 'procesarActualizacionCliente' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{clienteEditar.id}}">
+                
+                <label for="ci"><b>Cedula:</b></label>
+                <input type="text" name="ci" class="form-control" value="{{clienteEditar.ci}}" >
+                <br>
+                
+                <label for="nombre"><b>Nombre:</b></label>
+                <input type="text" name="nombre" class="form-control" value="{{clienteEditar.nombre}}" >
+                <br>
+
+                <label for="apellido"><b>Apellido:</b></label>
+                <input type="text" name="apellido" class="form-control" value="{{clienteEditar.apellido}}" >
+                <br>
+
+                <label for="telefono"><b>Teléfono:</b></label>
+                <input type="text" name="telefono" class="form-control" value="{{clienteEditar.telefono}}" >
+                <br>
+
+                <label for="direccion"><b>Dirección:</b></label>
+                <input type="text" name="direccion" class="form-control" value="{{clienteEditar.direccion}}" >
+                <br>
+
+                <label for="descripcion"><b>Descripción:</b></label>
+                <textarea type="text" name="descripcion" class="form-control" value="{{clienteEditar.descripcion}}" ></textarea>
+                <br>
+
+                <label for=""><b>Fotografia:</b></label>
+                <input type="file" name="foto" class="form-control" id="foto">
+                <br>
+
+                <button type="submit" class="btn btn-warning">Actualizar</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'listadoCliente' %}" class="btn btn-light">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

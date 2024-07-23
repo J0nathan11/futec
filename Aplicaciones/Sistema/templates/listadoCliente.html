@@ -1,0 +1,66 @@
+{% extends "./plantilla.html" %}
+{% block body %}
+<br>
+<div class="card">
+    <div class="card-title text-center">
+        <h3><b>Listado Clientes</b></h3> 
+    </div>
+</div>
+<br>
+<div class="text-end">
+    <a href="{% url 'nuevoCliente' %}" class="btn btn-success"><i class="fas fa-plus "></i>Agregar Cliente</a>
+</div>
+<br>
+<table class="table table-bordered table-striped table-hover" id="tbl-clientes" style="width: 90%; text-align:center; margin-left:30px;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>N° CEDULA</th>
+            <th>NOMBRE</th>
+            <th>APELLIDO</th>
+            <th>TELEFONO</th>
+            <th>DIRECCION</th>
+            <th>DESCRIPCION</th>
+            <th>FOTO</th>
+            <th>ACCIONES</th>  
+        </tr>
+    </thead>
+    <tbody>
+        {% for clienteTemporal in clientes %}
+        <tr>
+            <td>{{clienteTemporal.id}}</td>
+            <td>{{clienteTemporal.ci}}</td>
+            <td>{{clienteTemporal.nombre}}</td>
+            <td>{{clienteTemporal.apellido}}</td>
+            <td>{{clienteTemporal.telefono}}</td>
+            <td>{{clienteTemporal.direccion}}</td>
+            <td>{{clienteTemporal.descripcion}}</td>
+            <td>
+                {% if clienteTemporal.foto %}
+                    <a href="{{ clienteTemporal.foto.url }}" target="_blank">
+                        <img src="{{ clienteTemporal.foto.url }}" height="100px" width="100px">
+                    </a><br>
+                    <a download href="{{clienteTemporal.foto.url}}">
+                        Descargar
+                    </a>
+                {% else %}
+                    No hay foto disponible
+                {% endif %}
+            </td>
+            <td>   
+                <a href="{% url 'editarCliente' clienteTemporal.id %}" class="btn btn-outline-warning btn-circle" title="Editar Cliente"> <i class="fas fa-pencil"></i></a>
+                <a href="{% url 'eliminarCliente' clienteTemporal.id %}" 
+                onclick="return confirm('Esta seguro?')" class="btn btn-outline-danger btn-circle"><i class="fas fa-trash"> </i></a>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    let table = new DataTable('#tbl-clientes');
+</script>
+
+{% endblock %}
+

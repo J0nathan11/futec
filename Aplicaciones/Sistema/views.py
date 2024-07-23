@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Producto
+from .models import Producto, Cliente
 from django.contrib import messages 
 from django.http import JsonResponse
 
@@ -7,7 +7,7 @@ from django.http import JsonResponse
 def home(request):
     return render(request, 'home.html')
 
-#----------------------------Producto----------------------------------------------------------
+#----------------------------PRODUCTO----------------------------------------------------------
 def producto(request):
     return render(request, 'producto.html')
 
@@ -57,3 +57,57 @@ def procesarActualizacionProducto(request):
     productoConsultado.save()
     messages.success(request, 'Producto actualizado con éxito')
     return redirect('listadoProducto')
+
+#----------------------------CLIENTE----------------------------------------------------------
+def cliente(request):
+    return render(request, 'cliente.html')
+
+def listadoCliente(request):
+    clientes=Cliente.objects.all()
+    return render(request,'listadoCliente.html',{'clientes':clientes})
+#nuevo
+def nuevoCliente(request):
+    return render(request, 'nuevoCliente.html')
+#Guardar
+def guardarCliente(request):
+    ced=request.POST['ci']
+    nom=request.POST['nombre']
+    ape=request.POST['apellido']
+    tel=request.POST['telefono']
+    dir=request.POST['direccion']
+    desc=request.POST['descripcion']
+    fot=request.FILES.get("foto")
+    nuevoCliente=Cliente.objects.create(ci=ced,nombre=nom,apellido=ape,telefono=tel,direccion=dir,descripcion=desc,foto=fot)
+    messages.success(request, 'Cliente guardado con éxito')
+    return redirect('listadoCliente')
+#eliminar
+def eliminarCliente(request,id):
+    clienteEliminar = Cliente.objects.get(id=id)
+    clienteEliminar.delete()
+    messages.success(request, 'Cliente eliminado con éxito')
+    return redirect('listadoCliente')
+#editar
+def editarCliente(request,id):
+    clienteEditar = Cliente.objects.get(id=id)
+    return render(request, 'editarCliente.html', {'clienteEditar':clienteEditar})
+#Actualizar
+def procesarActualizacionCliente(request):
+    id=request.POST['id']
+    ci=request.POST['ci']
+    nombre=request.POST['nombre']
+    apellido=request.POST['apellido']
+    telefono=request.POST['telefono']
+    direccion=request.POST['direccion']
+    descripcion=request.POST['descripcion']
+    foto=request.FILES.get("foto")
+    clienteConsultado=Cliente.objects.get(id=id)
+    clienteConsultado.ci=ci
+    clienteConsultado.nombre=nombre
+    clienteConsultado.apellido=apellido
+    clienteConsultado.telefono=telefono
+    clienteConsultado.direccion=direccion
+    clienteConsultado.descripcion=descripcion
+    clienteConsultado.foto=foto
+    clienteConsultado.save()
+    messages.success(request, 'Cliente actualizado con éxito')
+    return redirect('listadoCliente')
