@@ -18,6 +18,7 @@
       <link rel="stylesheet" type="text/css" href="{% static 'plantilla/eflyer/css/bootstrap.min.css' %}">
       <!-- style css -->
       <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/styleHome.css' %}">
       <!-- Responsive-->
       <link rel="stylesheet" href="{% static 'plantilla/eflyer/css/responsive.css' %}">
       <!-- fevicon -->
@@ -48,8 +49,11 @@
       <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"> </script>
       <!--Importando Jquery Validation-->
       <script src="{% static 'librerias/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+      <!--Importando FileInput.js -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css">
+      <script  src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
    </head>
-   <body >
+   <body>
       <!-- banner bg main start -->
       <div class="banner_bg_main">
          <!-- header top section start -->
@@ -150,8 +154,7 @@
       <!-- footer section start -->
       <div class="footer_section layout_padding">
          <div class="container">
-            <div class="footer_logo"><a href="index.html"><img src="images/footer-logo.png"></a></div>
-            
+            <div class="footer_logo"><a href="index.html"><img src="{% static 'img/pieFutec.png' %}" width="150px" height="150px" ></a></div>
             <div class="footer_menu">
                <ul>
                   <li><a href="#">Soporte Técnico</a></li>

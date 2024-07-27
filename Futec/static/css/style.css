@@ -185,7 +185,7 @@ button {
 }
 
 .layout_padding {
-    padding-top: 90px;
+    padding-top: 20px;
     padding-bottom: 0px;
 }
 
@@ -199,7 +199,7 @@ button {
 .banner_bg_main {
     width: 100%;
     float: left;
-    background-color: #dda43b;
+    background: linear-gradient(to right, rgb(50, 144, 206), rgb(207, 101, 101));
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -807,7 +807,6 @@ a:hover {
 }
 
 .footer_logo {
-    width: 100%;
     text-align: center;
 }
 

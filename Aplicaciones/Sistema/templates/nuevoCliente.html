@@ -5,34 +5,39 @@
     <div class="row">
         <div class="col-md-4"></div>
             <div class="col-md-4">
-                <form action="{% url 'guardarCliente' %}" enctype="multipart/form-data" id="frm_nuevo_cliente" method="post">
-                    {% csrf_token %}
-                        <label for="ci"><b>Cédula</b></label>
-                        <input type="text" name="ci" class="form-control" id="ci" placeholder="Ingrese la cedula" required>
-                        <br>
-                        <label for="nombre"><b>Nombre:</b></label>
-                        <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese el nombre" required>
-                        <br>
-                        <label for="apellido"><b>Apellido:</b></label>
-                        <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Ingrese el apellido" required>
-                        <br>
-                        <label for="telefono"><b>Teléfono</b></label>
-                        <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Ingrese el celular o teléfono" required>
-                        <br>
-                        <label for="direccion"><b>Dirección</b></label>
-                        <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Ingrese la dirección" required>
-                        <br>
-                        <label for="descripcion">Descripción:</label>
-                        <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la Descripción"></textarea>
-                        <br>
-                        <label for="foto"><b>Fotografía:</b></label>
-                        <input type="file" name="foto" id="foto" accept="image/*" required class="form-control">
-                        <br>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="{% url 'listadoCliente' %}" class="btn btn-secondary">Cancelar</a>
-                </form>
-            </div>+
+                <br>
+                <h2 style="text-align: center;">Nuevo Cliente</h2>
+                <div class="formulario">
+                    <form action="{% url 'guardarCliente' %}" enctype="multipart/form-data" id="frm_nuevo_cliente" method="post">
+                        {% csrf_token %}
+                            <label for="ci"><b>Cédula</b></label>
+                            <input type="text" name="ci" class="form-control" id="ci" placeholder="Ingrese la cedula" required>
+                            <br>
+                            <label for="nombre"><b>Nombre:</b></label>
+                            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese el nombre" required>
+                            <br>
+                            <label for="apellido"><b>Apellido:</b></label>
+                            <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Ingrese el apellido" required>
+                            <br>
+                            <label for="telefono"><b>Teléfono</b></label>
+                            <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Ingrese el celular o teléfono" required>
+                            <br>
+                            <label for="direccion"><b>Dirección</b></label>
+                            <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Ingrese la dirección" required>
+                            <br>
+                            <label for="descripcion">Descripción:</label>
+                            <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la Descripción"></textarea>
+                            <br>
+                            <label for="foto"><b>Fotografía:</b></label>
+                            <input type="file" name="foto" id="foto" accept="image/*" required class="form-control">
+                            <br>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'listadoCliente' %}" class="btn btn-secondary">Cancelar</a>
+                    </form>
+                </div>
+                
+            </div>
     </div>
 </div>
 <br><br><br><br>

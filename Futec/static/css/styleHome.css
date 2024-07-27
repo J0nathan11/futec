@@ -12,3 +12,10 @@ body {
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
+.formulario{
+    width: auto;
+    height: auto;
+    background: linear-gradient(to right, rgb(111, 189, 241), rgb(255, 200, 200));
+    padding: 30px 30px 30px 30px;
+    border-radius: 30px;
+}
