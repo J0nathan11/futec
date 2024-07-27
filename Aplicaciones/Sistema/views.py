@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto, Cliente
 from django.contrib import messages 
 from django.http import JsonResponse
@@ -9,11 +9,13 @@ def home(request):
 
 #----------------------------PRODUCTO----------------------------------------------------------
 def producto(request):
-    return render(request, 'producto.html')
+    productos=Producto.objects.all()
+    return render(request, 'producto.html',{'productos':productos})
 
 def listadoProducto(request):
     productos=Producto.objects.all()
     return render(request,'listadoProducto.html',{'productos':productos})
+
 #nuevo
 def nuevoProducto(request):
     return render(request, 'nuevoProducto.html')
@@ -40,23 +42,31 @@ def editarProducto(request,id):
     return render(request, 'editarProducto.html', {'productoEditar':productoEditar})
 #Actualizar
 def procesarActualizacionProducto(request):
-    id=request.POST['id']
-    nombre=request.POST['nombre']
-    descripcion=request.POST['descripcion']
-    precio=request.POST['precio']
-    stock=request.POST['stock']
-    estado=request.POST['estado']
-    foto=request.FILES.get("foto")
-    productoConsultado=Producto.objects.get(id=id)
-    productoConsultado.nombre=nombre
-    productoConsultado.descripcion=descripcion
-    productoConsultado.precio=precio
-    productoConsultado.stock=stock
-    productoConsultado.estado=estado
-    productoConsultado.foto=foto
-    productoConsultado.save()
-    messages.success(request, 'Producto actualizado con éxito')
-    return redirect('listadoProducto')
+    if request.method == 'POST':
+        id = request.POST['id']
+        nombre = request.POST['nombre']
+        descripcion = request.POST['descripcion']
+        precio = request.POST['precio']
+        stock = request.POST['stock']
+        estado = request.POST['estado']
+        nueva_foto = request.FILES.get("foto")
+        # Obtener el producto existente
+        productoConsultado = get_object_or_404(Producto, id=id)
+        # Actualizar campos
+        productoConsultado.nombre = nombre
+        productoConsultado.descripcion = descripcion
+        productoConsultado.precio = precio
+        productoConsultado.stock = stock
+        productoConsultado.estado = estado
+        # Solo actualizar la foto si se proporciona una nueva
+        if nueva_foto:
+            productoConsultado.foto = nueva_foto
+        # Guardar cambios
+        productoConsultado.save()
+        messages.success(request, 'Producto actualizado con éxito')
+        return redirect('listadoProducto')
+    else:
+        return redirect('listadoProducto')
 
 #----------------------------CLIENTE----------------------------------------------------------
 def cliente(request):

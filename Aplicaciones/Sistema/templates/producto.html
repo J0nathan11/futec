@@ -8,18 +8,45 @@
 </div>
 <div style="text-align: center;">
     <a href="{% url 'listadoProducto' %}" class="btn btn-success"><i class="fas fa-plus "></i> Agregar Producto</a>
-<br><br>
-<div style="margin-left: 48%;">
-    <table border="1px">
+</div>
+<hr style="border: 0; border-top: 3px solid rgb(219, 82, 2); width:90%; margin-left:70px;">
+<div>
+    <table style="margin: 0 auto; border-spacing: 20px;"> <!-- Espaciado entre celdas -->
+        {% for productoTemporal in productos %}
+        {% if forloop.first or forloop.counter0|divisibleby:2 %}
         <tr>
-            <td>
-                Producto
+        {% endif %}
+            <td style="padding-right: 150px;"> <!-- Ajusta el padding-right -->
+                <b style="text-align: center;">{{ productoTemporal.nombre }}</b>
+                <br><br>
+                {% if productoTemporal.foto %}
+                    <img src="{{ productoTemporal.foto.url }}" alt="{{ productoTemporal.nombre }}" class="imagen-producto">
+                {% else %}
+                    No hay foto disponible
+                {% endif %}
             </td>
-            <td>
-                Productos
-            </td>
+        {% if forloop.counter|divisibleby:2 or forloop.last %}
         </tr>
+        {% endif %}
+        {% endfor %}
     </table>
 </div>
-<hr style="border: 0; border-top: 3px solid rgb(219, 82, 2); width:90%;">
+
+
+<!----------------------------------------------ESTILOS------------------------------------------------------>
+<style>
+    .imagen-producto {
+        width: 250px; /* Ajusta el ancho según tus necesidades */
+        height: 250px; /* Ajusta la altura según tus necesidades */
+        object-fit: cover; /* Mantiene la proporción y recorta la imagen si es necesario */
+        display: block; /* Para evitar espacios debajo de la imagen */
+        margin: 0 auto; /* Centra las imágenes en su celda */
+    }
+    table {
+        margin: 0 auto; /* Centra la tabla en la página */
+    }
+    td {
+        padding: 20px 200px; /* Ajusta el espaciado alrededor de las imágenes */
+    }
+</style>
 {% endblock %}

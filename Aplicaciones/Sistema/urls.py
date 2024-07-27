@@ -14,7 +14,6 @@ urlpatterns = [
     path('eliminarProducto/<id>',views.eliminarProducto, name='eliminarProducto'),
     path('editarProducto/<id>',views.editarProducto, name="editarProducto"),
     path('procesarActualizacionProducto/',views.procesarActualizacionProducto, name="procesarActualizacionProducto"),
-
     #----------------------------CLIENTE-------------------------------------
     path('cliente/', views.cliente, name='cliente'),
     path('listadoCliente/',views.listadoCliente, name="listadoCliente"),

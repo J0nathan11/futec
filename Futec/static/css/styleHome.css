@@ -1,8 +1,14 @@
 .img-centro{
     margin-top: 20px;
-    margin-left: 350px;
+    margin-left: 300px;
 }
 .tabla-margen{
-    margin-left: 300px;
+    margin-left: 200px;
     
+}
+body {
+    background-image: url("{% static 'img/fondo.jpg' %}");
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
 }

@@ -9,30 +9,35 @@
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{productoEditar.id}}">
                 <label for="nombre"><b>Nombre</b></label>
-                <input type="text" name="nombre" class="form-control" id="nombre"  value="{{productoEditar.id}}" placeholder="Ingrese la cedula" required>
+                <input type="text" name="nombre" class="form-control" id="nombre"  value="{{productoEditar.nombre}}" placeholder="Ingrese la cedula" required>
                 <br>
                 <label for="descripcion"><b>Descripción</b></label>
-                <textarea name="descripcion" class="form-control" id="descripcion"  value="{{productoEditar.id}}" placeholder="Ingrese la Descripción"></textarea>
+                <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la Descripción">{{productoEditar.descripcion}}</textarea>
                 <br>
                 <label for="precio"><b>Precio:</b></label>
-                <input type="txt" name="precio" class="form-control" id="precio"  value="{{productoEditar.id}}" placeholder="Ingrese nombre del Genero" required>
+                <input type="txt" name="precio" class="form-control" id="precio"  value="{{productoEditar.precio}}" placeholder="Ingrese nombre del Genero" required>
                 <br>
                 <label for=""><b>Stock:</b></label>
-                <select name="stock" id="stock" class="form-control"  value="{{productoEditar.id}}" required>
+                <select name="stock" id="stock" class="form-control"  value="{{productoEditar.stock}}" required>
                     <option value="">--SELECCIONE--</option>
                     <option value="DISPONIBLE" {% if productoEditar.stock == "DISPONIBLE" %}selected{% endif %}>DISPONIBLE</option>
                     <option value="AGOTADO" {% if productoEditar.stock == "AGOTADO" %}selected{% endif %}>AGOTADO</option>
                 </select>
                 <br>
                 <label for=""><b>Estado:</b></label>
-                <select name="estado" id="estado" class="form-control"  value="{{productoEditar.id}}" required>
+                <select name="estado" id="estado" class="form-control"  value="{{productoEditar.estado}}" required>
                     <option value="">--SELECCIONE--</option>
                     <option value="ACTIVO" {% if productoEditar.estado == "ACTIVO" %}selected{% endif %}>ACTIVO</option>
                     <option value="PASIVO" {% if productoEditar.estado == "PASIVO" %}selected{% endif %}>PASIVO</option>
                 </select>
                 <br>
                 <label for="foto"><b>Fotografía:</b></label>
-                <input type="file" name="foto" id="foto"  value="{{productoEditar.id}}" accept="image/*" required class="form-control">
+                {% if productoEditar.foto %}
+                    <img src="{{ productoEditar.foto.url }}" alt="{{ productoEditar.nombre }}" width="100px" height="100px">
+                    <br>
+                {% endif %}
+                <br>
+                <input type="file" name="foto" id="foto" accept="image/*" class="form-control">
                 <br>
                 <button  type="submit" class="btn btn-warning">
                     Actualizar</button>
