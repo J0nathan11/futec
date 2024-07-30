@@ -14,12 +14,20 @@ urlpatterns = [
     path('eliminarProducto/<id>',views.eliminarProducto, name='eliminarProducto'),
     path('editarProducto/<id>',views.editarProducto, name="editarProducto"),
     path('procesarActualizacionProducto/',views.procesarActualizacionProducto, name="procesarActualizacionProducto"),
-    #----------------------------CLIENTE-------------------------------------
+    #----------------------------CLIENTE--------------------------------------
     path('cliente/', views.cliente, name='cliente'),
     path('listadoCliente/',views.listadoCliente, name="listadoCliente"),
     path('nuevoCliente/',views.nuevoCliente, name="nuevoCliente"),
     path('guardarCliente/',views.guardarCliente, name="guardarCliente"),
     path('eliminarCliente/<id>',views.eliminarCliente, name='eliminarCliente'),
     path('editarCliente/<id>',views.editarCliente, name="editarCliente"),
-    path('procesarActualizacionCliente/',views.procesarActualizacionCliente, name="procesarActualizacionCliente")
+    path('procesarActualizacionCliente/',views.procesarActualizacionCliente, name="procesarActualizacionCliente"),
+
+    #----------------------------COTIZACION--------------------------------------
+    path('cotizacion/', views.cotizacion, name='cotizacion'),
+    path('listadoCotizacion/',views.listadoCotizacion, name="listadoCotizacion"),
+    path('nuevaCotizacion/',views.nuevaCotizacion, name="nuevaCotizacion"),
+    path('guardarCotizacion/',views.guardarCotizacion, name="guardarCotizacion"),
+    path('eliminarCotizacion/<id>',views.eliminarCotizacion, name="eliminarCotizacion"),
+
 ]

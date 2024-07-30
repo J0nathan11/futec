@@ -1,0 +1,26 @@
+{% extends './plantilla.html' %}
+{% load static %}
+{% block body %}
+
+<div style="padding-top: 280px;">
+    <h1 style="text-align: center;">
+    <b>COTIZACIONES</b></h1>
+</div>
+<div style="text-align: center;">
+    <a href="{% url 'listadoCotizacion' %}" class="btn btn-success"><i class="fas fa-plus "></i>Agregar Cotización</a>
+<br><br>
+<div style="margin-left: 48%;">
+    <table border="1px">
+        <tr>
+            <td>
+                Cotizacion
+            </td>
+            <td>
+                Cotizacion
+            </td>
+        </tr>
+    </table>
+</div>
+<hr style="border: 0; border-top: 3px solid rgb(219, 82, 2); width:90%;">
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Producto, Cliente
+from .models import Producto, Cliente, Cotizacion
 from django.contrib import messages 
 from django.http import JsonResponse
 
@@ -83,11 +83,12 @@ def guardarCliente(request):
     ced=request.POST['ci']
     nom=request.POST['nombre']
     ape=request.POST['apellido']
+    cor=request.POST['correo']
     tel=request.POST['telefono']
     dir=request.POST['direccion']
     desc=request.POST['descripcion']
     fot=request.FILES.get("foto")
-    nuevoCliente=Cliente.objects.create(ci=ced,nombre=nom,apellido=ape,telefono=tel,direccion=dir,descripcion=desc,foto=fot)
+    nuevoCliente=Cliente.objects.create(ci=ced,nombre=nom,apellido=ape,correo=cor,telefono=tel,direccion=dir,descripcion=desc,foto=fot)
     messages.success(request, 'Cliente guardado con éxito')
     return redirect('listadoCliente')
 #eliminar
@@ -106,6 +107,7 @@ def procesarActualizacionCliente(request):
     ci=request.POST['ci']
     nombre=request.POST['nombre']
     apellido=request.POST['apellido']
+    correo=request.POST['correo']
     telefono=request.POST['telefono']
     direccion=request.POST['direccion']
     descripcion=request.POST['descripcion']
@@ -114,6 +116,7 @@ def procesarActualizacionCliente(request):
     clienteConsultado.ci=ci
     clienteConsultado.nombre=nombre
     clienteConsultado.apellido=apellido
+    clienteConsultado.correo=correo
     clienteConsultado.telefono=telefono
     clienteConsultado.direccion=direccion
     clienteConsultado.descripcion=descripcion
@@ -121,3 +124,32 @@ def procesarActualizacionCliente(request):
     clienteConsultado.save()
     messages.success(request, 'Cliente actualizado con éxito')
     return redirect('listadoCliente')
+
+#----------------------------COTIZACION--------------------------------------
+#listado
+def cotizacion(request):
+    cotizaciones=Cotizacion.objects.all()
+    return render(request, 'cotizacion.html',{'cotizaciones':cotizaciones})
+
+def listadoCotizacion(request):
+    cotizaciones=Cotizacion.objects.all()
+    return render(request,'listadoCotizacion.html',{'cotizaciones':cotizaciones})
+#nuevo
+def nuevaCotizacion(request):
+    return render(request, 'nuevaCotizacion.html')
+#Guardar
+def guardarCotizacion(request):
+    ced=request.POST['ci_cli']
+    nom_ap=request.POST['nombre_apellido']
+    cor=request.POST['correo']
+    tel=request.POST['telefono']
+    desc=request.POST['descripcion']
+    nuevaCotizacion=Cotizacion.objects.create(ci_cli=ced,nombre_apellido=nom_ap,correo=cor,telefono=tel,descripcion=desc)
+    messages.success(request, 'Cotizacion guardada con éxito')
+    return redirect('listadoCotizacion')
+#eliminar
+def eliminarCotizacion(request,id):
+    cotizacionEliminar = Cotizacion.objects.get(id=id)
+    cotizacionEliminar.delete()
+    messages.success(request, 'Cotizacion eliminada con éxito')
+    return redirect('listadoCotizacion')
