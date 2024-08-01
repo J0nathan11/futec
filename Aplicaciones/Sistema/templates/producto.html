@@ -20,7 +20,7 @@
                 <b style="text-align: center;">{{ productoTemporal.nombre }}</b>
                 <br><br>
                 {% if productoTemporal.foto %}
-                    <img src="{{ productoTemporal.foto.url }}" alt="{{ productoTemporal.nombre }}" class="imagen-producto">
+                    <img src="{{ productoTemporal.foto.url }}" alt="{{ productoTemporal.nombre }}" class="imagen-producto zoom">
                 {% else %}
                     No hay foto disponible
                 {% endif %}
@@ -35,9 +35,15 @@
 
 <!----------------------------------------------ESTILOS------------------------------------------------------>
 <style>
+    .zoom{
+        transition: transform 0.5s; /* Duración transición */
+    }
+    .zoom:hover {
+        transform: scale(1.5); /* Tamaño imagen al poner el cursor*/
+    }
     .imagen-producto {
-        width: 250px; /* Ajusta el ancho según tus necesidades */
-        height: 250px; /* Ajusta la altura según tus necesidades */
+        width: 250px; 
+        height: 250px; 
         object-fit: cover; /* Mantiene la proporción y recorta la imagen si es necesario */
         display: block; /* Para evitar espacios debajo de la imagen */
         margin: 0 auto; /* Centra las imágenes en su celda */

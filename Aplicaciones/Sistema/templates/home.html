@@ -17,16 +17,16 @@
     <table>
         <tr>
             <td style="padding-left: 10px;">
-                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px">
+                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px" class="zoom">
             </td>
             <td style="padding-left: 10px;">
-                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px">
+                <img src="{% static 'img/varilla.jpg' %}" height="300px" width="200px" class="zoom">
             </td>
             <td style="padding-left: 10px;">
-                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px">
+                <img src="{% static 'img/tapa.jpg' %}" height="300px" width="200px" class="zoom">
             </td>
             <td style="padding-left: 10px;">
-                <img src="{% static 'img/imagenEmpresa.jpg' %}" height="300px" width="200px">
+                <img src="{% static 'img/metalicos.jpg' %}" height="300px" width="200px" class="zoom">
             </td>
 
         </tr>
@@ -55,5 +55,20 @@
     </table>
 </div>
 <br><br><br><br>
+
+<style>
+    .zoom {
+        width: 250px; 
+        height: 150px; 
+        object-fit: cover; /* Mantiene la proporción y recorta la imagen si es necesario */
+        display: block; /* Para evitar espacios debajo de la imagen */
+        margin: 0 auto; /* Centra las imágenes en su celda */
+        transition: transform 0.5s; /* Duración transición */
+    }
+
+    .zoom:hover {
+        transform: scale(1.5); /* Tamaño imagen al poner el cursor*/
+    }
+</style>
 
 {% endblock %}
