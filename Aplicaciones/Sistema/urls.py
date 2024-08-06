@@ -30,4 +30,8 @@ urlpatterns = [
     path('guardarCotizacion/',views.guardarCotizacion, name="guardarCotizacion"),
     path('eliminarCotizacion/<id>',views.eliminarCotizacion, name="eliminarCotizacion"),
 
+    #-----------------------------CARRITO---------------------------
+    path('agregarProductoCarrito/<int:product_id>/', views.agregarProductoCarrito, name='agregarProductoCarrito'),
+    path('cart/', views.verCarrito, name='verCarrito'),
+    path('eliminarProductoCarrito/<int:product_id>/', views.eliminarProductoCarrito, name='eliminarProductoCarrito'),
 ]
