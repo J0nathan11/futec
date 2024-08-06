@@ -7,31 +7,38 @@
     <b>PRODUCTOS</b></h1>
 </div>
 <div style="text-align: center;">
-    <a href="{% url 'listadoProducto' %}" class="btn btn-success"><i class="fas fa-plus "></i> Agregar Producto</a>
+    <a href="{% url 'listadoProducto' %}" class="btn btn-success"><i class="fas fa-plus "></i>Agregar Producto</a>
 </div>
 <hr style="border: 0; border-top: 3px solid rgb(219, 82, 2); width:90%; margin-left:70px;">
 <div>
-    <table style="margin: 0 auto; border-spacing: 20px;"> <!-- Espaciado entre celdas -->
-        {% for productoTemporal in productos %}
-        {% if forloop.first or forloop.counter0|divisibleby:2 %}
+    <table style="margin: 0 auto; border-spacing: 20px; width: 90%; text-align: center;">
         <tr>
-        {% endif %}
-            <td style="padding-right: 150px;"> <!-- Ajusta el padding-right -->
-                <b style="text-align: center;">{{ productoTemporal.nombre }}</b>
-                <br><br>
-                {% if productoTemporal.foto %}
-                    <img src="{{ productoTemporal.foto.url }}" alt="{{ productoTemporal.nombre }}" class="imagen-producto zoom">
-                {% else %}
-                    No hay foto disponible
+            {% for productoTemporal in productos %}
+                <td style="width: 30%; text-align: center; padding: 10px; box-sizing: border-box;"> 
+                    <div style="border: 1px solid #ddd; padding: 10px; height: 400px; display: flex; flex-direction: column; align-items: center;">
+                        <b>{{ productoTemporal.nombre }}</b>
+                        <b> $ {{ productoTemporal.precio }}</b>
+                        <br>
+                        {% if productoTemporal.foto %}
+                            <img src="{{ productoTemporal.foto.url }}" alt="{{ productoTemporal.nombre }}" class="imagen-producto zoom" style="width: 100%; height: 200px; object-fit: cover;">
+                        {% else %}
+                            No hay foto disponible
+                        {% endif %}
+                        <br>
+                        <div>
+                            <a href="{% url 'agregarProductoCarrito' product_id=productoTemporal.id %}" class="btn-custom-blue" style="margin-bottom: 10px;"><i class="fas fa-credit-card"></i> Comprar</a>
+                            <a href="{% url 'agregarProductoCarrito' product_id=productoTemporal.id %}" class="btn-custom-blue"><i class="fas fa-shopping-cart"></i> Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </td>
+                {% if forloop.counter|divisibleby:3 %}
+                    </tr><tr> 
                 {% endif %}
-            </td>
-        {% if forloop.counter|divisibleby:2 or forloop.last %}
+            {% endfor %}
         </tr>
-        {% endif %}
-        {% endfor %}
-    </table>
+    </table>  
 </div>
-
+<br>
 
 <!----------------------------------------------ESTILOS------------------------------------------------------>
 <style>
@@ -39,7 +46,7 @@
         transition: transform 0.5s; /* Duración transición */
     }
     .zoom:hover {
-        transform: scale(1.5); /* Tamaño imagen al poner el cursor*/
+        transform: scale(1.1); /* Tamaño imagen al poner el cursor*/
     }
     .imagen-producto {
         width: 250px; 
@@ -54,5 +61,16 @@
     td {
         padding: 20px 200px; /* Ajusta el espaciado alrededor de las imágenes */
     }
+    .btn-custom-blue {
+        background-color: #007bff; /* Color azul */
+        color: #fff;
+        padding: 10px 10px;
+        border-radius: 10px;
+    }
+    .btn-custom-blue:hover {
+        background-color: #007bff; /* Color azul más oscuro para el hover */
+        color: #0c0c0c; /* Mantiene el color del texto en blanco */
+    }
+    
 </style>
 {% endblock %}

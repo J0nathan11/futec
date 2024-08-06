@@ -67,6 +67,37 @@ def procesarActualizacionProducto(request):
         return redirect('listadoProducto')
     else:
         return redirect('listadoProducto')
+#--------------------CARRITO----------------------------------------------
+def agregarProductoCarrito(request, product_id):
+    producto = get_object_or_404(Producto, id=product_id)
+    cart = request.session.get('cart', {})
+
+    if str(product_id) in cart:
+        cart[str(product_id)]['quantity'] += 1
+    else:
+        cart[str(product_id)] = {
+            'name': producto.nombre,
+            'price': producto.precio,
+            'quantity': 1,
+            'photo_url': producto.foto.url if producto.foto else None
+        }
+
+    request.session['cart'] = cart
+    return redirect('verCarrito')
+
+def verCarrito(request):
+    cart = request.session.get('cart', {})
+    total_price = sum(float(item['price']) * item['quantity'] for item in cart.values())
+    return render(request, 'cart.html', {'cart': cart, 'total_price': total_price})
+
+def eliminarProductoCarrito(request, product_id):
+    cart = request.session.get('cart', {})
+    
+    if str(product_id) in cart:
+        del cart[str(product_id)]
+        request.session['cart'] = cart
+    
+    return redirect('verCarrito')
 
 #----------------------------CLIENTE----------------------------------------------------------
 def cliente(request):
