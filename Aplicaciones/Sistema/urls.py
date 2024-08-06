@@ -23,12 +23,14 @@ urlpatterns = [
     path('editarCliente/<id>',views.editarCliente, name="editarCliente"),
     path('procesarActualizacionCliente/',views.procesarActualizacionCliente, name="procesarActualizacionCliente"),
 
-    #----------------------------COTIZACION--------------------------------------
+     #----------------------------COTIZACION--------------------------------------
     path('cotizacion/', views.cotizacion, name='cotizacion'),
     path('listadoCotizacion/',views.listadoCotizacion, name="listadoCotizacion"),
     path('nuevaCotizacion/',views.nuevaCotizacion, name="nuevaCotizacion"),
     path('guardarCotizacion/',views.guardarCotizacion, name="guardarCotizacion"),
     path('eliminarCotizacion/<id>',views.eliminarCotizacion, name="eliminarCotizacion"),
+    path('editarCotizacion/<id>',views.editarCotizacion, name="editarCotizacion"),
+    path('procesarActualizacionCotizacion/',views.procesarActualizacionCotizacion, name="procesarActualizacionCotizacion"),
 
     #-----------------------------CARRITO---------------------------
     path('agregarProductoCarrito/<int:product_id>/', views.agregarProductoCarrito, name='agregarProductoCarrito'),
