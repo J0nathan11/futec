@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto, Cliente, Cotizacion
 from django.template.loader import render_to_string
-from xhtml2pdf import pisa
+
 from django.contrib import messages 
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
