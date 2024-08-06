@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h3 style="text-align: center;"><b>Listado de Clientes</b></h3>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>N° CEDULA</th>
+                <th>NOMBRE Y APELLIDO</th>
+                <th>CORREO</th>
+                <th>TELEFONO</th>
+                <th>CIUDAD</th>
+                <th>PRODUCTOS</th>
+                <th>MATERIAL</th>
+                <th>OBSERVACIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cotizacionTemporal in cotizaciones %}
+            <tr>
+                <td>{{cotizacionTemporal.id}}</td>
+                <td>{{cotizacionTemporal.ci_cli}}</td>
+                <td>{{cotizacionTemporal.nombre_apellido}}</td>
+                <td>{{cotizacionTemporal.correo}}</td>
+                <td>{{cotizacionTemporal.telefono}}</td>
+                <td>{{cotizacionTemporal.ciudad}}</td>
+                <td>{{cotizacionTemporal.linea_productos}}</td>
+                <td>{{cotizacionTemporal.material}}</td>
+                <td>{{cotizacionTemporal.descripcion}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

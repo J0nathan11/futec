@@ -14,6 +14,7 @@ urlpatterns = [
     path('eliminarProducto/<id>',views.eliminarProducto, name='eliminarProducto'),
     path('editarProducto/<id>',views.editarProducto, name="editarProducto"),
     path('procesarActualizacionProducto/',views.procesarActualizacionProducto, name="procesarActualizacionProducto"),
+    path('productos/reporte/', views.generarReporteProductos, name='generarReporteProductos'),
     #----------------------------CLIENTE--------------------------------------
     path('cliente/', views.cliente, name='cliente'),
     path('listadoCliente/',views.listadoCliente, name="listadoCliente"),
@@ -22,6 +23,7 @@ urlpatterns = [
     path('eliminarCliente/<id>',views.eliminarCliente, name='eliminarCliente'),
     path('editarCliente/<id>',views.editarCliente, name="editarCliente"),
     path('procesarActualizacionCliente/',views.procesarActualizacionCliente, name="procesarActualizacionCliente"),
+    path('clientes/reporte/', views.generarReporteClientes, name='generarReporteClientes'),
 
      #----------------------------COTIZACION--------------------------------------
     path('cotizacion/', views.cotizacion, name='cotizacion'),
@@ -31,6 +33,7 @@ urlpatterns = [
     path('eliminarCotizacion/<id>',views.eliminarCotizacion, name="eliminarCotizacion"),
     path('editarCotizacion/<id>',views.editarCotizacion, name="editarCotizacion"),
     path('procesarActualizacionCotizacion/',views.procesarActualizacionCotizacion, name="procesarActualizacionCotizacion"),
+    path('cotizaciones/reporte/', views.generarReporteCotizaciones, name='generarReporteCotizaciones'),
 
     #-----------------------------CARRITO---------------------------
     path('agregarProductoCarrito/<int:product_id>/', views.agregarProductoCarrito, name='agregarProductoCarrito'),

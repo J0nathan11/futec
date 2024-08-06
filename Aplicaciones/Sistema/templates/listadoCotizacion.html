@@ -9,6 +9,7 @@
 <br>
 <div class="text-center">
     <a href="{% url 'nuevaCotizacion' %}" class="btn btn-success"><i class="fas fa-plus">&nbsp;&nbsp;</i>Agregar Cotización</a>
+    <a href="{% url 'generarReporteCotizaciones' %}" class="btn btn-info"><i class="fas fa-file-pdf">&nbsp;&nbsp;</i>Generar Reporte PDF</a>
 </div>
 <br>
 <table class="table table-bordered table-striped table-hover" id="tbl-cotizaciones" style="width: 90%; text-align:center; margin-left:30px;">
@@ -34,9 +35,6 @@
             <td>{{cotizacionTemporal.nombre_apellido}}</td>
             <td>{{cotizacionTemporal.correo}}</td>
             <td>{{cotizacionTemporal.telefono}}</td>
-            <td>{{cotizacionTemporal.ciudad}}</td>
-            <td>{{cotizacionTemporal.linea_productos}}</td>
-            <td>{{cotizacionTemporal.material}}</td>
             <td>{{cotizacionTemporal.descripcion}}</td>
             <td>   
                 <a href="{% url 'editarCotizacion' cotizacionTemporal.id %}" class="btn btn-outline-warning btn-circle" title="Editar Cotizacion"> <i class="fas fa-pencil"></i></a>

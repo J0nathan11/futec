@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto, Cliente, Cotizacion
+from django.template.loader import render_to_string
+from xhtml2pdf import pisa
 from django.contrib import messages 
-from django.http import JsonResponse
-
+from django.http import HttpResponse, JsonResponse
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
@@ -99,6 +100,15 @@ def eliminarProductoCarrito(request, product_id):
     
     return redirect('verCarrito')
 
+# Generar reporte PDF
+def generarReporteProductos(request):
+    productos = Producto.objects.all()
+    html_string = render_to_string('reporteProducto.html', {'productos': productos})
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="reporte_productos.pdf"'
+    pisa.CreatePDF(html_string, dest=response)
+    return response
+
 #----------------------------CLIENTE----------------------------------------------------------
 def cliente(request):
     return render(request, 'cliente.html')
@@ -156,6 +166,14 @@ def procesarActualizacionCliente(request):
     messages.success(request, 'Cliente actualizado con éxito')
     return redirect('listadoCliente')
 
+def generarReporteClientes(request):
+    clientes = Cotizacion.objects.all()
+    html_string = render_to_string('reporteCliente.html', {'clientes': clientes})
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="reporte_clientes.pdf"'
+    pisa.CreatePDF(html_string, dest=response)
+    return response
+
 #----------------------------COTIZACION--------------------------------------
 #listado
 def cotizacion(request):
@@ -206,3 +224,11 @@ def procesarActualizacionCotizacion(request):
     cotizacionConsultada.save()
     messages.success(request, 'Cliente actualizado con éxito')
     return redirect('listadoCotizacion')
+
+def generarReporteCotizaciones(request):
+    cotizaciones = Cotizacion.objects.all()
+    html_string = render_to_string('reporteCotizacion.html', {'cotizaciones': cotizaciones})
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="reporte_cotizaciones.pdf"'
+    pisa.CreatePDF(html_string, dest=response)
+    return response

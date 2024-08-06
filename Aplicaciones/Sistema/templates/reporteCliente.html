@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+</head>
+<body>
+    <h3 style="text-align: center;"><b>Listado de Clientes</b></h3>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>N° CEDULA</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>CORREO</th>
+                <th>TELEFONO</th>
+                <th>DIRECCION</th>
+                <th>DESCRIPCION</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for clienteTemporal in clientes %}
+            <tr>
+                <td>{{clienteTemporal.id}}</td>
+                <td>{{clienteTemporal.ci}}</td>
+                <td>{{clienteTemporal.nombre}}</td>
+                <td>{{clienteTemporal.apellido}}</td>
+                <td>{{clienteTemporal.correo}}</td>
+                <td>{{clienteTemporal.telefono}}</td>
+                <td>{{clienteTemporal.direccion}}</td>
+                <td>{{clienteTemporal.descripcion}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
