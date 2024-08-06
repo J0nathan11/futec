@@ -21,60 +21,6 @@
                     <label for="telefono"><b>Teléfono</b></label>
                     <input type="text" name="telefono" class="form-control" id="telefono" value="{{ cotizacionEditar.telefono }}" placeholder="Ingrese el celular o teléfono del cliente" required>
                     <br>
-                    <label for="ciudad"><b>Ciudad:</b></label>
-                    <select name="ciudad" id="ciudad" class="form-control" required>
-                        <option value="">Seleccionar Ciudad...</option>
-                        <option value="Latacunga" {% if cotizacionEditar.ciudad == "Latacunga" %}selected{% endif %}>Latacunga</option>
-                        <option value="Salcedo" {% if cotizacionEditar.ciudad == "Salcedo" %}selected{% endif %}>Salcedo</option>
-                        <option value="Pujilí" {% if cotizacionEditar.ciudad == "Pujilí" %}selected{% endif %}>Pujilí</option>
-                        <option value="Ambato" {% if cotizacionEditar.ciudad == "Ambato" %}selected{% endif %}>Ambato</option>
-                        <option value="La Mana" {% if cotizacionEditar.ciudad == "La Mana" %}selected{% endif %}>La Mana</option>
-                        <option value="Quito" {% if cotizacionEditar.ciudad == "Quito" %}selected{% endif %}>Quito</option>
-                    </select>
-                    <br>
-
-
-                    <label for="linea_productos"><b>Productos:</b></label>
-                    <select name="linea_productos" id="linea_productos" class="form-control" required>
-                        <option value="0" disabled="" selected="">Seleccione la línea de productos</option>
-                        <option value="Agroindustrias" {% if cotizacionEditar.linea_productos == "Agroindustrias" %}selected{% endif %}>Agroindustrias</option>
-                        <option value="Laminados" {% if cotizacionEditar.linea_productos == "Laminados" %}selected{% endif %}>Laminados</option>
-                        <option value="Tuberia" {% if cotizacionEditar.linea_productos == "Tuberia" %}selected{% endif %}>Tubería</option>
-                        <option value="Varilla" {% if cotizacionEditar.linea_productos == "Varilla" %}selected{% endif %}>Varilla</option>
-                    </select>
-                    <br>
-                    
-                    <select name="agroindustrias_options" id="agroindustrias_options" class="form-control" style="display: {% if cotizacionEditar.linea_productos == 'Agroindustrias' %}block{% else %}none{% endif %};">
-                        <option value="0" disabled selected>Seleccione una opción</option>
-                        <option value="Elementos Finales" {% if cotizacionEditar.agroindustrias_options == "Elementos Finales" %}selected{% endif %}>Elementos Finales</option>
-                        <option value="Tanques y Silos" {% if cotizacionEditar.agroindustrias_options == "Tanques y Silos" %}selected{% endif %}>Tanques y Silos</option>
-                    </select>
-                    <select name="laminados_options" id="laminados_options" class="form-control" style="display: {% if cotizacionEditar.linea_productos == 'Laminados' %}block{% else %}none{% endif %};">
-                        <option value="0" disabled selected>Seleccione una opción</option>
-                        <option value="Ángulos" {% if cotizacionEditar.laminados_options == "Ángulos" %}selected{% endif %}>Ángulos</option>
-                        <option value="Platinas" {% if cotizacionEditar.laminados_options == "Platinas" %}selected{% endif %}>Platinas</option>
-                        <option value="Barras" {% if cotizacionEditar.laminados_options == "Barras" %}selected{% endif %}>Barras</option>
-                        <option value="TEES" {% if cotizacionEditar.laminados_options == "TEES" %}selected{% endif %}>TEES</option>
-                    </select>
-
-                    <select name="tuberias_options" id="tuberias_options" class="form-control" style="display: {% if cotizacionEditar.linea_productos == 'Tuberia' %}block{% else %}none{% endif %};">
-                        <option value="0" disabled selected>Seleccione una opción</option>
-                        <option value="Tuberia Caliente" {% if cotizacionEditar.tuberias_options == "Tuberia Caliente" %}selected{% endif %}>Tubería caliente</option>
-                        <option value="Tuberia ISO" {% if cotizacionEditar.tuberias_options == "Tuberia ISO" %}selected{% endif %}>Tubería ISO</option>
-                        <option value="Tuberia Galvanizada" {% if cotizacionEditar.tuberias_options == "Tuberia Galvanizada" %}selected{% endif %}>Tubería Galvanizada</option>
-                        <option value="Tuberia Metalizada" {% if cotizacionEditar.tuberias_options == "Tuberia Metalizada" %}selected{% endif %}>Tubería Metalizada</option>
-                        <option value="Tubieria Fría" {% if cotizacionEditar.tuberias_options == "Tubieria Fría" %}selected{% endif %}>Tubería Fría</option>
-                        <option value="Carpinteria Metálica" {% if cotizacionEditar.tuberias_options == "Carpinteria Metálica" %}selected{% endif %}>Carpinteria Metálica</option>
-                    </select>
-
-                    <select name="varillas_options" id="varillas_options" class="form-control" style="display: {% if cotizacion.linea_productos == 'Varilla' %}block{% else %}none{% endif %};">
-                        <option value="0" disabled selected>Seleccione una opción</option>
-                        <option value="Varilla Recta" {% if cotizacionEditar.varillas_options == "Varilla Recta" %}selected{% endif %}>Varilla Recta</option>
-                        <option value="Varilla Figurada" {% if cotizacionEditar.varillas_options == "Varilla Figurada" %}selected{% endif %}>Varilla Figurada</option>
-                        <option value="Varilla Helicoidal" {% if cotizacionEditar.varillas_options == "Varilla Helicoidal" %}selected{% endif %}>Varilla Helicoidal</option>
-                        <option value="Varilla en Rollo" {% if cotizacionEditar.varillas_options == "Varilla en Rollo" %}selected{% endif %}>Varilla en Rollo</option>
-                    </select>
-
                     <label for="descripcion"><b>Observaciones:</b></label>
                     <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la Descripción de la cotización">{{ cotizacionEditar.descripcion }}</textarea>
                     <br>
@@ -87,34 +33,6 @@
         </div>
     </div>
 </div>
-<br><br><br><br>
-
-<script>
-    document.getElementById('linea_productos').addEventListener('change', function() {
-        var agroindustriasOptions = document.getElementById('agroindustrias-options');
-        var laminadosOptions = document.getElementById('laminados-options');
-        var tuberiasOptions = document.getElementById('tuberias-options');
-        var varillasOptions = document.getElementById('varillas-options');
-
-        agroindustriasOptions.style.display = 'none';
-        laminadosOptions.style.display = 'none';
-        tuberiasOptions.style.display = 'none';
-        varillasOptions.style.display = 'none';
-
-        if (this.value == "Agroindustrias") {
-            agroindustriasOptions.style.display = 'block';
-        } else if (this.value == "Laminados") {
-            laminadosOptions.style.display = 'block';
-        } else if (this.value == "Tuberia") {
-            tuberiasOptions.style.display = 'block';
-        } else if (this.value == "Varilla") {
-            varillasOptions.style.display = 'block';
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('linea_productos').dispatchEvent(new Event('change'));
-    });
-</script>
+<br><br>
 
 {% endblock %}

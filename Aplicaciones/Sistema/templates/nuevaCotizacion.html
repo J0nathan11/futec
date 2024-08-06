@@ -22,60 +22,6 @@
                             <label for="telefono"><b>Teléfono</b></label>
                             <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Ingrese el celular o teléfono del cliente" required>
                             <br>
-                            <label for="ciudad"><b>Ciudad:</b></label>
-                            <select name="ciudad" id="ciudad" class="form-control" required>
-                                <option value="0" disabled="" selected="">Seleccionar Ciudad...</option>
-                                <option value="Seleccionar Ciudad..." disabled="" selected="">Seleccionar Ciudad...</option>
-                                <option value="Latacunga">Latacunga</option>
-                                <option value="Salcedo">Salcedo</option>
-                                <option value="Pujilí">Pujilí</option>
-                                <option value="Ambato">Ambato</option>
-                                <option value="La Mana">La Mana</option>
-                                <option value="Quito">Quito</option>
-                            </select>
-                            <br>
-                            
-                            <label for="linea_productos"><b>Productos:</b></label>
-                            <select name="linea_productos" id="linea_productos" class="form-control" required>
-                                <option value="0" disabled="" selected="">Seleccione la línea de productos</option>
-                                <option value="Agroindustrias">Agroindustrias</option>
-                                <option value="Laminados">Laminados</option>
-                                <option value="Tuberia">Tubería</option>
-                                <option value="Varilla">Varilla</option>
-                            </select>
-                            <br>
-                            
-                            <select name="agroindustrias_options" id="agroindustrias_options" class="form-control" style="display: none;">
-                                <option value="0" disabled selected>Seleccione una opción</option>
-                                <option value="Elementos Finales">Elementos Finales</option>
-                                <option value="Tanques y Silos">Tanques y Silos</option>
-                            </select>
-
-                            <select name="laminados_options" id="laminados_options" class="form-control" style="display: none;">
-                                <option value="0" disabled selected>Seleccione una opción</option>
-                                <option value="Ángulos">Ángulos</option>
-                                <option value="Platinas">Platinas</option>
-                                <option value="Barras">Barras</option>
-                                <option value="TEES">TEES</option>
-                            </select>
-
-                            <select name="tuberias_options" id="tuberias_options" class="form-control" style="display: none;">
-                                <option value="0" disabled selected>Seleccione una opción</option>
-                                <option value="Tuberia Caliente">Tubería caliente</option>
-                                <option value="Tuberia ISO">Tubería ISO</option>
-                                <option value="Tuberia Galvanizada">Tubería Galvanizada</option>
-                                <option value="Tuberia Metalizada">Tubería Metalizada</option>
-                                <option value="Tubieria Fría">Tubería Fría</option>
-                                <option value="Carpinteria Metálica">Carpinteria Metálica</option>
-                            </select>
-
-                            <select name="varillas_options" id="varillas_options" class="form-control" style="display: none;">
-                                <option value="0" disabled selected>Seleccione una opción</option>
-                                <option value="Varilla Recta">Varilla Recta</option>
-                                <option value="Varilla Figurada">Varilla Figurada</option>
-                                <option value="Varilla Helicoidal">Varilla Helicoidal</option>
-                                <option value="Varilla en Rollo">Varilla en Rollo</option>
-                            </select>
 
                             <label for="descripcion"><b>Observaciones:</b></label>
                             <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la Descripción de la cotización"></textarea>
@@ -90,31 +36,7 @@
             </div>
     </div>
 </div>
-<br><br><br><br>
-
-<script>
-    document.getElementById('linea_productos').addEventListener('change', function() {
-        var agroindustriasOptions = document.getElementById('agroindustrias_options');
-        var laminadosOptions = document.getElementById('laminados_options');
-        var tuberiasOptions = document.getElementById('tuberias_options');
-        var varillasOptions = document.getElementById('varillas_options');
-
-        agroindustriasOptions.style.display = 'none';
-        laminadosOptions.style.display = 'none';
-        tuberiasOptions.style.display = 'none';
-        varillasOptions.style.display = 'none';
-
-        if (this.value == "Agroindustrias") {
-            agroindustriasOptions.style.display = 'block';
-        } else if (this.value == "Laminados") {
-            laminadosOptions.style.display = 'block';
-        } else if (this.value == "Tuberia") {
-            tuberiasOptions.style.display = 'block';
-        } else if (this.value == "Varilla") {
-            varillasOptions.style.display = 'block';
-        }
-    });
-</script>
+<br><br><br>
 
 <script>
     $("#frm_nueva_cotizacion").validate({
