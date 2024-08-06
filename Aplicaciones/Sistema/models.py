@@ -50,16 +50,13 @@ class Cliente(models.Model):
     
 #Cargando modelo Cotizacion
 class Cotizacion(models.Model):
-    id = models.AutoField(primary_key=True)
-    ci_cli = models.CharField(max_length=15)
-    nombre_apellido = models.CharField(max_length=50)
-    correo = models.CharField(max_length=100)
-    telefono = models.CharField(max_length=20)
-    ciudad = models.CharField(max_length=100, default='')
-    linea_productos = models.CharField(max_length=100, default='')
-    material = models.CharField(max_length=100, default='')  # Nuevo campo para el material
-    descripcion = models.CharField(max_length=100)
-    
-    def _str_(self):
-        fila = "{0}: {1} - {2} - {3} - {4} - {5} - {6}"
-        return fila.format(self.id,self.ci_cli,self.nombre_apellido,self.correo,self.telefono,self.ciudad,self.linea_productos,self.material,self.descripcion)
+    id=models.AutoField(primary_key=True)
+    ci_cli=models.CharField(max_length=15)
+    nombre_apellido=models.CharField(max_length=50)
+    correo=models.CharField(max_length=100)
+    telefono=models.CharField(max_length=20)
+    descripcion=models.CharField(max_length=100)
+    def __str__(self):
+        fila="{0}: {1} - {2} - {3} - {4} - {5}"
+        return fila.format(self.id,self.ci_cli,self.nombre_apellido,self.correo,self.telefono,self.descripcion)
+

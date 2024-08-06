@@ -174,21 +174,8 @@ def guardarCotizacion(request):
     nom_ap = request.POST['nombre_apellido']
     cor = request.POST['correo']
     tel = request.POST['telefono']
-    ciudad = request.POST.get('ciudad', '')  # Añadir campo ciudad si es necesario
-    linea_productos = request.POST.get('linea_productos')
     descripcion = request.POST['descripcion']
-
-    # Obtener el material seleccionado basado en la línea de productos
-    material = ''
-    if linea_productos == "Agroindustrias":
-        material = request.POST.get('agroindustrias_options')
-    elif linea_productos == "Laminados":
-        material = request.POST.get('laminados_options')
-    elif linea_productos == "Tubería":
-        material = request.POST.get('tuberias_options')
-    elif linea_productos == "Varilla":
-        material = request.POST.get('varillas_options')
-    nuevaCotizacion = Cotizacion.objects.create(ci_cli=ced,nombre_apellido=nom_ap,correo=cor,telefono=tel,ciudad=ciudad,linea_productos=linea_productos,material=material,descripcion=descripcion)
+    nuevaCotizacion = Cotizacion.objects.create(ci_cli=ced,nombre_apellido=nom_ap,correo=cor,telefono=tel,descripcion=descripcion)
     messages.success(request, 'Cotización guardada con éxito')
     return redirect('listadoCotizacion')
 #eliminar
@@ -209,24 +196,12 @@ def procesarActualizacionCotizacion(request):
     nombre_apellido = request.POST['nombre_apellido']
     correo = request.POST['correo']
     telefono = request.POST['telefono']
-    ciudad = request.POST.get('ciudad', '')  # Añadir campo ciudad si es
-    linea_productos = request.POST.get('linea_productos')
-    agroindustrias_options = request.POST.get('agroindustrias_options')
-    laminados_options = request.POST.get('laminados_options')
-    tuberias_options = request.POST.get('tuberias_options')
-    varillas_options = request.POST.get('varillas_options')
     descripcion = request.POST.get('descripcion')
     cotizacionConsultada=Cotizacion.objects.get(id=id)
     cotizacionConsultada.ci_cli=ci_cli
     cotizacionConsultada.nombre_apellido = nombre_apellido
     cotizacionConsultada.correo = correo
     cotizacionConsultada.telefono = telefono
-    cotizacionConsultada.ciudad = ciudad
-    cotizacionConsultada.linea_productos = linea_productos
-    cotizacionConsultada.agroindustrias_options = agroindustrias_options
-    cotizacionConsultada.laminados_options = laminados_options
-    cotizacionConsultada.tuberias_options = tuberias_options
-    cotizacionConsultada.varillas_options = varillas_options
     cotizacionConsultada.descripcion = descripcion
     cotizacionConsultada.save()
     messages.success(request, 'Cliente actualizado con éxito')
